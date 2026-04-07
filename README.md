@@ -1,3 +1,91 @@
+README.md
+
+md
+# RAPPORT D'ANALYSE PROFESSIONNELLE - PROJET AiAgentTp3.1
+
+## 📋 SYNTHÈSE EXÉCUTIVE
+
+Le projet **AiAgentTp3.1** est une application Python spécialisée dans la construction d'agents IA utilisant **Retrieval-Augmented Generation (RAG)** et **LangGraph**. Il s'agit d'un travail pratique (TP) visant à intégrer des capacités d'agents intelligents avec accès à une base de données vectorielle pour répondre à des requêtes en français.
+
+**Statut**: Complété (dernier commit: "fin du tp" - 7 avril 2026)
+
+---
+
+## 1. INFORMATIONS GÉNÉRALES
+
+| Propriété | Détails |
+|-----------|---------|
+| **Nom du Projet** | AiAgentTp3.1 |
+| **Propriétaire** | ilyashajji |
+| **URL** | https://github.com/ilyashajji/AiAgentTp3.1 |
+| **Visibilité** | Public |
+| **Langage Principal** | Python |
+| **État** | Actif & Complété |
+| **Date de Création** | 6 avril 2026 |
+| **Taille du Dépôt** | 151 KB |
+| **License** | Non spécifiée |
+
+---
+
+## 2. STRUCTURE DU PROJET
+
+AiAgentTp3.1/ ├── agentic_rag.py # Cœur de l'application (1,921 octets) ├── main.py # Point d'entrée (85 octets) ├── pyproject.toml # Configuration du projet (409 octets) ├── langgraph.json # Configuration LangGraph (138 octets) ├── uv.lock # Verrou des dépendances (558 KB) ├── .python-version # Spécification Python (3.13) ├── .gitignore # Fichiers ignorés ├── .langgraph_api/ # Répertoire API LangGraph └── README.md # Vide
+
+Code
+
+---
+
+## 3. ARCHITECTURE ET FONCTIONNALITÉS
+
+### 3.1 Composants Principaux
+
+#### **A. Module d'Agent RAG** (`agentic_rag.py`)
+L'élément central de l'application qui implémente:
+
+- **Gestion de Vectorstore**: Utilise Chroma avec embeddings OpenAI pour stocker et rechercher des informations
+- **Données de Test**: Base de données de CV contenant 4 chunks de texte en français sur un employé nommé "Yassine"
+- **Outils d'Agent**: 
+  - `get_employee_info()`: Récupère les informations d'un employé (nom, salaire, séniorité)
+  - `send_email()`: Envoie des emails avec sujet et contenu
+- **Moteur IA**: Utilise GPT-4o d'OpenAI pour l'intelligence artificielle
+
+#### **B. Point d'Entrée** (`main.py`)
+- Fonction simple qui affiche "Hello from tp3-rag!"
+- Actuellement minimaliste, point de départ pour l'intégration
+
+#### **C. Configuration LangGraph** (`langgraph.json`)
+- Expose l'agent RAG comme service: `my_agent_rag`
+- Configure les dépendances et le fichier `.env`
+
+---
+
+## 4. STACK TECHNOLOGIQUE
+
+### 4.1 Dépendances Principales
+
+| Bibliothèque | Version | Rôle |
+|--------------|---------|------|
+| **langchain** | ≥1.2.15 | Framework principal pour les agents IA |
+| **langchain-openai** | ≥1.1.12 | Intégration OpenAI (GPT-4o, embeddings) |
+| **langchain-community** | ≥0.4.1 | Outils communautaires additionnels |
+| **langgraph** | ≥1.1.6 | Orchestration des workflows d'agents |
+| **langgraph-cli** | ≥0.4.19 | Interface CLI pour LangGraph |
+| **chromadb** | ≥1.5.5 | Base de données vectorielle |
+| **python-dotenv** | ≥1.2.2 | Gestion des variables d'environnement |
+| **ipython** | ≥9.12.0 | Environnement interactif |
+
+### 4.2 Configuration d'Environnement
+- **Python**: 3.13 ou supérieur
+- **Gestionnaire de dépendances**: `uv` (UV Python)
+- **Clés d'API requises**: Clé OpenAI (stockée dans `.env`)
+
+---
+
+## 5. FLUX DE FONCTIONNEMENT
+
+User Query (en français) ↓ GPT-4o Agent (avec system prompt) ↓ Decision: Utiliser quel outil? ├─→ get_employee_info() → Récupère données employé ├─→ send_email() → Envoie notification └─→ Vector Retrieval (Chroma) → Recherche dans le CV ↓ Réponse compilée à l'utilisateur
+
+Code
 
 ---
 
